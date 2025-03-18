@@ -2,6 +2,7 @@
     #include "hardware/pio.h"
     #include "hardware/clocks.h"
     #include "pico/stdlib.h"
+    #include <stdlib.h>
     #define _BITDOGLAB_LED_MATRIX_
     #define LED_PIN 7
     #define BITDOGLAB_M_PI 3.1415926536
