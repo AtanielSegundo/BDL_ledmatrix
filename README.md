@@ -99,14 +99,16 @@ typedef struct {
   Desenha uma linha na matriz utilizando o algoritmo de [Bresenham](https://pt.wikipedia.org/wiki/Algoritmo_de_Bresenham).
 
 - ### Exemplo: Coração Colorido
+
   Neste exemplo, o coração é desenhado na matriz 5x5 e sua cor muda gradualmente, gerando um efeito colorido dinâmico.
 
 ```c
-#define BDLED_IMPLEMENTATION    // NECESSARIO DEFINIR ANTES DE ADICIONAR O CABEÇALHO, PARA QUE AS IMPLEMENTAÇÕES SEJAM ADICIONADAS
-                                // CASO SO DESEJE OS PROTOTIPOS NÃO É NECESSARIO ADICIONAR
+#define BDLED_IMPLEMENTATION    // NECESSÁRIO DEFINIR ANTES DE ADICIONAR O CABEÇALHO, PARA QUE AS IMPLEMENTAÇÕES SEJAM ADICIONADAS
+                                // CASO SÓ DESEJE OS PROTÓTIPOS, NÃO É NECESSÁRIO ADICIONAR
 #include "bdl_led_matrix.h"
 #include "pico/stdlib.h"
 
+#define LED_PIN 2      // Defina o pino de controle conforme sua placa
 #define MATRIX_SIZE 5
 #define BRIGHT 0.05
 
@@ -143,14 +145,25 @@ void draw_heart(LedMatrix *matrix) {
     bdl_matrixSetPixel(matrix, 3, 3, HEART_R, HEART_G, HEART_B, BRIGHT);
     bdl_matrixSetPixel(matrix, 4, 2, HEART_R, HEART_G, HEART_B, BRIGHT);
     // Converte o valor HSV para RGB, alterando a cor do coração ao longo do tempo
-    bdl_hsv_to_rgb(count,1,1,&HEART_R,&HEART_G,&HEART_B);
+    bdl_hsv_to_rgb(count, 1, 1, &HEART_R, &HEART_G, &HEART_B);
     count = count + 5;
-    if (count > 5*255){
+    if (count > 5 * 255) {
         count = 0; 
-        HEART_R  = 255; HEART_G  = 0; HEART_B  = 0;
+        HEART_R  = 255;
+        HEART_G  = 0;
+        HEART_B  = 0;
         bdl_matrixClear(matrix);
         sleep_ms(100);
     }
 }
 ```
+
+---
+
+## Exemplo Visual
+
+Confira abaixo um GIF demonstrando o efeito do coração colorido em ação:
+
+![Exemplo de Coração Colorido](https://github.com/AtanielSegundo/BDL_ledmatrix/blob/main/example_bdl.gif)
+
 ---
