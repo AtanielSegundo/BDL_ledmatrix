@@ -186,4 +186,8 @@ Confira abaixo um GIF demonstrando o efeito do coração colorido em ação:
 
 ![Exemplo de Coração Colorido](https://github.com/AtanielSegundo/BDL_ledmatrix/blob/main/example_bdl.gif)
 
+- ### Observação
+
+Para testar este projeto em sua placa, basta baixar este repositório e importar a pasta example como um projeto utilizando a extensão Raspberry Pi Pico Project.
+
 ---
