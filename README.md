@@ -98,17 +98,38 @@ typedef struct {
   ```
   Desenha uma linha na matriz utilizando o algoritmo de [Bresenham](https://pt.wikipedia.org/wiki/Algoritmo_de_Bresenham).
 
-- ### Exemplo: Coração Colorido
+---
+
+## Exemplo
 
   Neste exemplo, o coração é desenhado na matriz 5x5 e sua cor muda gradualmente, gerando um efeito colorido dinâmico.
+- ### Cmake Essenciais
+```cmake
+# Adiciona as bibliotecas de dependencias na pasta build
+target_link_libraries( heart
+        pico_stdlib
+        pico_multicore
+        hardware_pio
+        hardware_clocks
+        hardware_adc
+        hardware_pwm
+)
 
-```c
+# Adiciona os caminhos para o cabeçalho da biblioteca
+target_include_directories(heart PRIVATE
+        ${CMAKE_CURRENT_LIST_DIR}
+        ${CMAKE_CURRENT_LIST_DIR}/includes
+)
+```
+- ### Código C
+
+``` c
 #define BDLED_IMPLEMENTATION    // NECESSÁRIO DEFINIR ANTES DE ADICIONAR O CABEÇALHO, PARA QUE AS IMPLEMENTAÇÕES SEJAM ADICIONADAS
                                 // CASO SÓ DESEJE OS PROTÓTIPOS, NÃO É NECESSÁRIO ADICIONAR
 #include "bdl_led_matrix.h"
 #include "pico/stdlib.h"
 
-#define LED_PIN 2      // Defina o pino de controle conforme sua placa
+#define LED_PIN 7               // Defina o pino de controle conforme sua placa, 7 é o padrão
 #define MATRIX_SIZE 5
 #define BRIGHT 0.05
 
@@ -156,11 +177,10 @@ void draw_heart(LedMatrix *matrix) {
         sleep_ms(100);
     }
 }
+
 ```
 
----
-
-## Exemplo Visual
+- ### Resultado
 
 Confira abaixo um GIF demonstrando o efeito do coração colorido em ação:
 
